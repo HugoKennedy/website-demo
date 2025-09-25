@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { FALLBACK_IMAGE } from '../../constants';
 import { Profile } from '../../interfaces/profile';
 import { skeleton } from '../../utils';
@@ -24,6 +25,24 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
   avatarRing,
   resumeFileUrl,
 }): React.JSX.Element => {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsLightboxOpen(false);
+      }
+    };
+
+    if (isLightboxOpen) {
+      document.addEventListener('keydown', onKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isLightboxOpen]);
+
   return (
     <div className="card shadow-lg card-sm bg-base-100">
       <div className="grid place-items-center py-8">
@@ -47,15 +66,22 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
               }`}
             >
               {
-                <LazyImage
-                  src={profile.avatar ? profile.avatar : FALLBACK_IMAGE}
-                  alt={profile.name}
-                  placeholder={skeleton({
-                    widthCls: 'w-full',
-                    heightCls: 'h-full',
-                    shape: '',
-                  })}
-                />
+                <button
+                  type="button"
+                  className="w-full h-full rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary cursor-zoom-in"
+                  onClick={() => setIsLightboxOpen(true)}
+                  aria-label="View profile image"
+                >
+                  <LazyImage
+                    src={profile.avatar ? profile.avatar : FALLBACK_IMAGE}
+                    alt={profile.name}
+                    placeholder={skeleton({
+                      widthCls: 'w-full',
+                      heightCls: 'h-full',
+                      shape: '',
+                    })}
+                  />
+                </button>
               }
             </div>
           </div>
@@ -85,13 +111,28 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
             <a
               href={resumeFileUrl}
               target="_blank"
-              className="btn btn-outline btn-sm text-xs mt-6 opacity-50"
+              className="btn btn-success btn-sm text-xs mt-6"
               download
               rel="noreferrer"
             >
               Download Resume
             </a>
           ))}
+        {isLightboxOpen && profile?.avatar && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setIsLightboxOpen(false)}
+          >
+            <img
+              src={profile.avatar || FALLBACK_IMAGE}
+              alt={profile.name}
+              className="w-[85vw] h-[85vh] object-contain rounded-box shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

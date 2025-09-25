@@ -1,5 +1,6 @@
 export interface SanitizedGithub {
   username: string;
+  displayValue?: string;
 }
 
 export interface SanitizedGitHubProjects {
@@ -40,6 +41,13 @@ export interface SanitizedSEO {
   title?: string;
   description?: string;
   imageURL?: string;
+}
+
+export interface SanitizedProfile {
+  name?: string;
+  avatar?: string;
+  location?: string;
+  bio?: string;
 }
 
 export interface SanitizedSocial {
@@ -126,6 +134,7 @@ export interface SanitizedThemeConfig {
 
 export interface SanitizedConfig {
   github: SanitizedGithub;
+  profile?: SanitizedProfile;
   projects: SanitizedProjects;
   seo: SanitizedSEO;
   social: SanitizedSocial;

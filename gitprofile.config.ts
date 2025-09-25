@@ -3,6 +3,13 @@
 const CONFIG = {
   github: {
     username: 'arifszn', // Your GitHub org/user name. (This is the only required config)
+    displayValue: 'later',
+  },
+  profile: {
+    name: 'Hugo Kennedy',
+    avatar: 'hugo.jpeg',
+    location: 'Paris',
+    bio: 'Engineering student at SKKU and IP Paris',
   },
   /**
    * If you are deploying to https://<USERNAME>.github.io/, for example your repository is at https://github.com/arifszn/arifszn.github.io, set base to '/'.
@@ -14,7 +21,7 @@ const CONFIG = {
     github: {
       display: true, // Display GitHub projects?
       header: 'Github Projects',
-      mode: 'automatic', // Mode can be: 'automatic' or 'manual'
+      mode: 'manual', // Mode can be: 'automatic' or 'manual'
       automatic: {
         sortBy: 'stars', // Sort projects by 'stars' or 'updated'
         limit: 8, // How many projects to display.
@@ -25,7 +32,7 @@ const CONFIG = {
       },
       manual: {
         // Properties for manually specifying projects
-        projects: ['arifszn/gitprofile', 'arifszn/pandora'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+        projects: ['arifszn/gitprofile', 'arifszn/ezfolio'], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
       },
     },
     external: {
@@ -53,30 +60,12 @@ const CONFIG = {
   },
   seo: { title: 'Portfolio of Ariful Alam', description: '', imageURL: '' },
   social: {
-    linkedin: 'ariful-alam',
-    x: 'arif_szn',
-    mastodon: 'arifszn@mastodon.social',
-    researchGate: '',
-    facebook: '',
-    instagram: '',
-    reddit: '',
-    threads: '',
-    youtube: '', // example: 'pewdiepie'
-    udemy: '',
-    dribbble: '',
-    behance: '',
-    medium: 'arifszn',
-    dev: 'arifszn',
-    stackoverflow: '', // example: '1/jeff-atwood'
-    discord: '',
-    telegram: '',
-    website: 'https://www.arifszn.com',
-    phone: '',
-    email: 'arifulalamszn@gmail.com',
+    linkedin: 'https://hugotheengineer.com',
+    email: 'hugo.kennedy2004@gmail.com',
   },
   resume: {
     fileUrl:
-      'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', // Empty fileUrl will hide the `Download Resume` button.
+      'KENNEDY--MARTINEZ%20HUGO%20CV%20MARS%202025%20FR.pdf', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     'PHP',
@@ -118,20 +107,7 @@ const CONFIG = {
       link: 'https://example.com',
     },
   ],
-  educations: [
-    {
-      institution: 'Institution Name',
-      degree: 'Degree',
-      from: '2015',
-      to: '2019',
-    },
-    {
-      institution: 'Institution Name',
-      degree: 'Degree',
-      from: '2012',
-      to: '2014',
-    },
-  ],
+  educations: [],
   publications: [
     {
       title: 'Publication Title',

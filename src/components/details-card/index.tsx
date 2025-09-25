@@ -198,7 +198,7 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
               <ListItem
                 icon={<AiFillGithub />}
                 title="GitHub:"
-                value={github.username}
+                value={github.displayValue || github.username}
                 link={`https://github.com/${github.username}`}
               />
               {social?.researchGate && (
@@ -230,7 +230,11 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                   icon={<FaLinkedin />}
                   title="LinkedIn:"
                   value={social.linkedin}
-                  link={`https://www.linkedin.com/in/${social.linkedin}`}
+                  link={
+                    social.linkedin.startsWith('http')
+                      ? social.linkedin
+                      : `https://www.linkedin.com/in/${social.linkedin}`
+                  }
                 />
               )}
               {social?.dribbble && (
@@ -321,7 +325,7 @@ const DetailsCard = ({ profile, loading, social, github }: Props) => {
                   link={`https://stackoverflow.com/users/${social.stackoverflow}`}
                 />
               )}
-              {social?.website && (
+              {social?.website && !social?.linkedin && (
                 <ListItem
                   icon={<FaGlobe />}
                   title="Website:"

@@ -21,6 +21,7 @@ import DetailsCard from './details-card';
 import SkillCard from './skill-card';
 import ExperienceCard from './experience-card';
 import EducationCard from './education-card';
+import EducationTimeline from './education-timeline';
 import CertificationCard from './certification-card';
 import { GithubProject } from '../interfaces/github-project';
 import GithubProjectCard from './github-project-card';
@@ -105,10 +106,10 @@ const GitProfile = ({ config }: { config: Config }) => {
       const data = response.data;
 
       setProfile({
-        avatar: data.avatar_url,
-        name: data.name || ' ',
-        bio: data.bio || '',
-        location: data.location || '',
+        avatar: (sanitizedConfig.profile?.avatar || data.avatar_url),
+        name: (sanitizedConfig.profile?.name || data.name || ' '),
+        bio: (sanitizedConfig.profile?.bio || data.bio || ''),
+        location: (sanitizedConfig.profile?.location || data.location || ''),
         company: data.company || '',
       });
 
@@ -239,6 +240,7 @@ const GitProfile = ({ config }: { config: Config }) => {
               </div>
               <div className="lg:col-span-2 col-span-1">
                 <div className="grid grid-cols-1 gap-6">
+                  <EducationTimeline />
                   {sanitizedConfig.projects.github.display && (
                     <GithubProjectCard
                       header={sanitizedConfig.projects.github.header}

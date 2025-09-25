@@ -3,6 +3,11 @@ interface Github {
    * GitHub org/user name
    */
   username: string;
+
+  /**
+   * Optional display value for the Details card (link still uses username)
+   */
+  displayValue?: string;
 }
 
 interface GitHubProjects {
@@ -321,6 +326,31 @@ interface Config {
    * Vite's base url
    */
   base?: string;
+
+  /**
+   * Optional static profile overrides
+   */
+  profile?: {
+    /**
+     * Display name override (falls back to GitHub name)
+     */
+    name?: string;
+
+    /**
+     * Avatar URL override (falls back to GitHub avatar)
+     */
+    avatar?: string;
+
+    /**
+     * Location override (falls back to GitHub location)
+     */
+    location?: string;
+
+    /**
+     * Bio override (falls back to GitHub bio)
+     */
+    bio?: string;
+  };
 
   /**
    * Projects config
